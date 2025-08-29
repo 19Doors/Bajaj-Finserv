@@ -25,8 +25,6 @@ function alternateCaps(str) {
 
 app.post('/bfhl', (req,res) => {
   try{
-
-  
   const {data} = req.body;
   let even = [];
   let odd = [];
@@ -49,7 +47,7 @@ app.post('/bfhl', (req,res) => {
     }if(s.match(/^[a-zA-Z]+$/)) {
       alpha.push(s.toUpperCase());
       alphaC+=s;
-    }else {
+    }else if(!s.match(/^\d+$/) && !s.match(/^[a-zA-Z]+$/)){
       special.push(s);
     }
   })

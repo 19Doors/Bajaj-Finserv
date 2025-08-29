@@ -2,7 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const app = express()
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'https://bajaj-finserv-livid-ten.vercel.app/',
+  methods: 'GET,POST',
+  allowedHeaders: 'Content-Type',
+};
+app.use(cors(corsOptions));
 
 const user_id = "sakaar_srivastava_19122004";
 const email = "sakaarsri1904@gmail.com";
@@ -71,6 +76,10 @@ app.post('/bfhl', (req,res) => {
     })
   }
 });
+
+app.get('/', (req,res)=> {
+  res.status(200).json({"success_get":true})
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

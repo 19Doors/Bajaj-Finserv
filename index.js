@@ -26,6 +26,12 @@ function alternateCaps(str) {
 app.post('/bfhl', (req,res) => {
   try{
   const {data} = req.body;
+  if(!data) {
+    return res.status(400).json({
+      is_success: false,
+      message: "Invalid Input: 'data' must be given in array form"
+    });
+  }
   let even = [];
   let odd = [];
   let alpha = [];
@@ -70,13 +76,17 @@ app.post('/bfhl', (req,res) => {
   }catch(error) {
     return res.status(500).json({
       'is_success': false,
-      message: error
+      message: "Internal Server Error"
     })
   }
 });
 
 app.get('/', (req,res)=> {
   res.status(200).json({"success_get":true})
+})
+
+app.get("/bfhl", (req,res) => {
+  res.status(200).json({"message":"do using POST"})
 })
 
 const PORT = process.env.PORT || 3000;
